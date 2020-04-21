@@ -1,4 +1,4 @@
-import { AnyObject, Omit, PropsOfType, StringKeyof } from './utils';
+import { AnyObject, PropsOfType, StringKeyof } from './utils';
 
 export interface WithId {
 	id: number;
@@ -43,6 +43,74 @@ export type SelectableProps<T> =
 		: Exclude<StringKeyof<T>, PropsOfType<T, ReverseNavigationResource>>; // This is the normal typed case
 
 export type ExpandableProps<T> = PropsOfType<T, AssociatedResource> & string;
+
+type SelectedProperty<T, K extends keyof T> = T[K] extends NavigationResource<
+	any
+>
+	? PineDeferred
+	: T[K] extends OptionalNavigationResource<any>
+	? PineDeferred | null
+	: T[K];
+
+type SelectResultObject<T, Props extends keyof T> = {
+	[P in Props]: SelectedProperty<T, P>;
+};
+
+export type TypedSelectResult<
+	T,
+	TParams extends ODataOptions<T>
+> = TParams['$select'] extends keyof T
+	? SelectResultObject<T, TParams['$select']>
+	: TParams['$select'] extends Array<keyof T>
+	? SelectResultObject<T, TParams['$select'][number]>
+	: TParams['$select'] extends '*'
+	? SelectResultObject<T, SelectableProps<T>>
+	: SelectResultObject<T, SelectableProps<T>>;
+
+type ExpandedProperty<
+	T,
+	K extends keyof T,
+	// K extends ExpandableProps<T>,
+	// KOpts extends ODataOptions<InferAssociatedResourceType<T[K]>>
+	// KOpts extends ODataOptions<InferAssociatedResourceType<any>>
+	KOpts extends ODataOptions<any>
+> = T[K] extends NavigationResource<any>
+	? [TypedResult<InferAssociatedResourceType<T[K]>, KOpts>]
+	: T[K] extends OptionalNavigationResource<any>
+	? [] | [TypedResult<InferAssociatedResourceType<T[K]>, KOpts>]
+	: T[K] extends ReverseNavigationResource<any>
+	? Array<TypedResult<InferAssociatedResourceType<T[K]>, KOpts>>
+	: never;
+
+type ExpandResultObject<T, Props extends keyof T> = {
+	[P in Props]: ExpandedProperty<T, P, {}>;
+};
+
+type ExpandResourceExpandObject<
+	T,
+	TResourceExpand extends ResourceExpand<T>
+> = {
+	[P in keyof TResourceExpand]: ExpandedProperty<
+		T,
+		P extends keyof T ? P : never,
+		Exclude<TResourceExpand[P], undefined>
+	>;
+};
+
+export type TypedExpandResult<
+	T,
+	TParams extends ODataOptions<T>
+> = TParams['$expand'] extends ExpandableProps<T>
+	? ExpandResultObject<T, TParams['$expand']>
+	: TParams['$expand'] extends ResourceExpand<T>
+	? ExpandResourceExpandObject<T, TParams['$expand']>
+	: {};
+
+export type TypedResult<T, TParams extends ODataOptions<T>> = Omit<
+	TypedSelectResult<T, TParams>,
+	keyof TypedExpandResult<T, TParams>
+> &
+	TypedExpandResult<T, TParams>;
 
 // based on https://github.com/balena-io/pinejs-client-js/blob/master/core.d.ts
 
