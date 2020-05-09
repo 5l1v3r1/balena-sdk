@@ -30,6 +30,23 @@ let aStringOrUndefined: string | undefined;
 	aAny = result.device_tag; // $ExpectError
 }
 
+(async () => {
+	const result = await sdk.pine.get({
+		resource: 'device',
+		id: 1,
+		options: {
+			$select: ['id', 'device_name'],
+		},
+	});
+
+	aNumber = result.id;
+	aString = result.device_name;
+
+	aString = result.os_version; // $ExpectError
+	aAny = result.belongs_to__application; // $ExpectError
+	aAny = result.device_tag; // $ExpectError
+})();
+
 {
 	type deviceOptionsSelectAsterisk = PineClient.TypedResult<
 		BalenaSdk.Device,
