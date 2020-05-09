@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import * as BalenaSdk from '../typings/balena-sdk';
+import { AnyObject } from '../typings/utils';
 import * as PineClient from '../typings/pinejs-client-core';
 
 const sdk: BalenaSdk.BalenaSDK = {} as any;
@@ -348,6 +349,33 @@ let aStringOrUndefined: string | undefined;
 	aNumberOrUndefined = result.should_be_running__release[0]?.id; // $ExpectError
 	aString = result.device_name; // $ExpectError
 	aAny = result.should_be_running__release[1]; // $ExpectError
+	aAny = result.device_tag; // $ExpectError
+}
+
+{
+	type deviceOptionsExpandNavigationResourceString = PineClient.TypedResult<
+		AnyObject,
+		{
+			$select: 'id';
+			$expand: {
+				should_be_running__release: {
+					$select: 'commit';
+				};
+			};
+		}
+	>;
+
+	const result: deviceOptionsExpandNavigationResourceString = {} as any;
+
+	aNumber = result.id;
+	// Errors, since it could be an OptionalNavigationResource
+	aStringOrUndefined = result.should_be_running__release[0].commit; // $ExpectError
+	aStringOrUndefined = result.should_be_running__release[0]?.commit;
+	aNumberOrUndefined = result.should_be_running__release[0]?.id; // $ExpectError
+	// This also works, since the typings don't know whether this is Navigation or a Reverse Navigation Resounce
+	aAny = result.should_be_running__release[1].commit;
+
+	aString = result.device_name; // $ExpectError
 	aAny = result.device_tag; // $ExpectError
 }
 
