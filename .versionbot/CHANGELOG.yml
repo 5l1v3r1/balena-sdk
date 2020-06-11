@@ -1,4 +1,18 @@
 - commits:
+    - subject: Fully type the pine.get results
+      hash: d48d7a47f9f26b6849998024839f16418d4dc0c1
+      body: ''
+      footer:
+        Resolves: '#887'
+        resolves: '#887'
+        Change-type: major
+        change-type: major
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+  version: 15.0.0
+  date: 2020-06-11T17:42:03.591Z
+- commits:
     - subject: 'typings: Drop the has_dependent field from the Device'
       hash: 3a7cde24c46f46865f59ee4d5915b99556ebcb7f
       body: ''
