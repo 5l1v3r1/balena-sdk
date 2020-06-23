@@ -1,4 +1,14 @@
 - commits:
+    - subject: Generate optional build for es2018 as well as the default es2015
+      hash: 650c0281eacfb1c296cc2e72000fb264a7cf8ed4
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 14.1.0
+  date: 2020-06-23T15:53:12.872Z
+- commits:
     - subject: 'appveyor: Increase the node space size'
       hash: 32358a89c057d71695fe8c6ac4753f26485df86e
       body: ''
