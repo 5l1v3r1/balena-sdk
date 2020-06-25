@@ -12,6 +12,11 @@ import { Dictionary } from './utils';
 
 // tslint:disable-next-line:no-namespace
 declare namespace BalenaSdk {
+	interface ResouceTypeMap {
+		application: Application;
+		device: Device;
+	}
+
 	type WithId = Pine.WithId;
 	type PineDeferred = Pine.PineDeferred;
 	type DeviceOverallStatus = DeviceOverallStatus.DeviceOverallStatus;
