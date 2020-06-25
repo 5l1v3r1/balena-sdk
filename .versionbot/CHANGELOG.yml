@@ -1,4 +1,18 @@
 - commits:
+    - subject: Fully type the pine.get results
+      hash: 5b4b8986b701ecd05f60ee8d0d30bc0522b4060d
+      body: ''
+      footer:
+        Resolves: '#887'
+        resolves: '#887'
+        Change-type: major
+        change-type: major
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+  version: 15.0.0
+  date: 2020-06-25T10:44:29.398Z
+- commits:
     - subject: 'appveyor: Increase the node space size'
       hash: 32358a89c057d71695fe8c6ac4753f26485df86e
       body: ''
