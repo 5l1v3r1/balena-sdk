@@ -317,6 +317,7 @@ declare namespace BalenaSdk {
 		application_environment_variable: ReverseNavigationResource<
 			ApplicationVariable
 		>;
+		build_environment_variable: ReverseNavigationResource<ApplicationVariable>;
 		application_tag: ReverseNavigationResource<ApplicationTag>;
 		owns__device: ReverseNavigationResource<Device>;
 		owns__release: ReverseNavigationResource<Release>;
