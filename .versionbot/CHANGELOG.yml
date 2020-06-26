@@ -1,4 +1,16 @@
 - commits:
+    - subject: 'model: Add build_environment_variable'
+      hash: 686477b45be1399a04832e923fb60467fd766b2c
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Rich Bayliss <rich@balena.io>
+        signed-off-by: Rich Bayliss <rich@balena.io>
+      author: Rich Bayliss
+  version: 14.0.2
+  date: 2020-06-26T16:13:58.405Z
+- commits:
     - subject: 'appveyor: Increase the node space size'
       hash: 32358a89c057d71695fe8c6ac4753f26485df86e
       body: ''
