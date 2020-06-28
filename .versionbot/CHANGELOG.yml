@@ -1,4 +1,34 @@
 - commits:
+    - subject: 'typings: Split the DeviceState namespace types to a different file'
+      hash: b790dd5466e0c9422c4bf3c5e2b488f523171d88
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+    - subject: 'typings: Split the DeviceTypeJson namespace types to a different file'
+      hash: c32927b3a8a2a0e2fc3801c804f4dc99f9e30d05
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+    - subject: 'typings: Split the SBVR model types to a different file'
+      hash: dcc2abf1d67a48a0a32aba9e6f5f196a6716a833
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+  version: 14.0.2
+  date: 2020-06-28T22:29:44.481Z
+- commits:
     - subject: 'appveyor: Increase the node space size'
       hash: 32358a89c057d71695fe8c6ac4753f26485df86e
       body: ''
